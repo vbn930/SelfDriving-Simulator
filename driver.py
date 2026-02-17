@@ -5,15 +5,8 @@ import numpy as np
 import torch
 import torch.nn as nn
 
-# ==========================================
-# 1. 모델 정의 (train.py와 동일해야 함)
-# ==========================================
-
 from train import Dave2
 
-# ==========================================
-# 2. 설정 및 모델 로드
-# ==========================================
 HOST = '127.0.0.1' # 로컬호스트
 PORT = 9999        # 포트 번호
 DEVICE = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
@@ -23,9 +16,6 @@ model.load_state_dict(torch.load("models/best_model_v3.pth", map_location=DEVICE
 model.eval() # 평가 모드 (Dropout 끄기)
 print("모델 로드 완료. 유니티 연결 대기 중...")
 
-# ==========================================
-# 3. 소켓 서버 실행
-# ==========================================
 server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 server_socket.bind((HOST, PORT))
 server_socket.listen(1)
